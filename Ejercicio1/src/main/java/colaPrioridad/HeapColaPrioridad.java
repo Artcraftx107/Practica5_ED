@@ -114,10 +114,10 @@ public class HeapColaPrioridad<P extends Comparable<P>, E> extends AbstractColaP
 
 			if (elemAux.prioridad().compareTo(heap[max].prioridad()) >= 0) {
 				bigger=true;
+			}else{
+				heap[index] = heap[max];
+				index = max;
 			}
-
-			heap[index] = heap[max];
-			index = max;
 		}
 
 		heap[index] = elemAux;
