@@ -35,13 +35,14 @@ public abstract class AbstractColaPrioridad<P extends Comparable<P>, E> implemen
     }
 
     protected abstract Par<P,E>[] toArray();
-    
-    
-    @Override
-    public boolean equals(Object obj) {
-		// Completar código aquí
 
-		return false;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractColaPrioridad<?, ?> that = (AbstractColaPrioridad<?, ?>) o;
+        return size == that.size && Arrays.equals(toArray(), that.toArray());
     }
 
     @Override
