@@ -103,21 +103,25 @@ public class HeapColaPrioridad<P extends Comparable<P>, E> extends AbstractColaP
 	private void percolateDown() {
 		int index = 0;
 		Par<P, E> elemAux = heap[index];
-		int left = hijoIzq(index);
-		int right = hijoDer(left+1);
-		int max = left;
-		while(2*index+1<size && elemAux.prioridad().compareTo(heap[max].prioridad())<0){
-			left = hijoIzq(index);
-			right=hijoDer(left+1);
+		boolean bigger = false;
+		while (hijoIzq(index) < size && !bigger) {
+			int left = hijoIzq(index);
+			int right = hijoDer(index);
+			int max = left;
 
-			if(right<size&&heap[right].prioridad().compareTo(heap[left].prioridad())>0){
-				max=right;
+			if (right < size && heap[right].prioridad().compareTo(heap[left].prioridad()) > 0) {
+				max = right;
 			}
 
-			heap[index]=heap[max];
-			index=max;
+			if (elemAux.prioridad().compareTo(heap[max].prioridad()) >= 0) {
+				bigger=true; 
+			}
+
+			heap[index] = heap[max];
+			index = max;
 		}
-		heap[index]=elemAux;
+
+		heap[index] = elemAux;
 	}
 
    //@SuppressWarnings("unchecked")
