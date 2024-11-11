@@ -65,8 +65,7 @@ public class HeapColaPrioridad<P extends Comparable<P>, E> extends AbstractColaP
 
 		Par<P, E> max = heap[0];
 		heap[0]=heap[size-1];
-		heap[size-1] = null;
-		size--;
+		heap[size--] = null; 
 		percolateDown();
 		return max;
 	}
